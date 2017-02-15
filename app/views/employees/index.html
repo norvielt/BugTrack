@@ -1,0 +1,158 @@
+<script type="text/x-template" id="bug-row">
+  <tr>
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.issue_type"><br>
+        <span style="color:red">{{ errors.issue_type }}</span>
+      </div>
+      <div v-else>{{ bug.issue_type }}</div>
+    </td>
+
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.issue_date"><br>
+        <span style="color:red">{{ errors.issue_date }}</span>
+      </div>
+      <div v-else>{{ bug.issue_date }}</div>
+    </td>    
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.priority_level"><br>
+        <span style="color:red">{{ errors.priority_level }}</span>
+      </div>
+      <div v-else>{{ bug.priority_level }}</div>
+    </td>
+
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.issue_name"><br>
+        <span style="color:red">{{ errors.issue_name }}</span>
+      </div>
+      <div v-else>{{ bug.issue_name }}</div>
+    </td>    
+    
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.issue_desc"><br>
+        <span style="color:red">{{ errors.issue_desc }}</span>
+      </div>
+      <div v-else>{{ bug.issue_desc }}</div>
+    </td>
+
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.comments"><br>
+      </div>
+      <div v-else>{{ bug.comments }}</div>
+    </td>    
+    
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.assigned_to_name"><br>
+      </div>
+      <div v-else>{{ bug.assigned_to_name }}</div>
+    </td>
+    
+    
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.assigned_to_email"><br>
+        <span style="color:red">{{ errors.assigned_to_email }}</span>
+      </div>
+      <div v-else>{{ bug.assigned_to_email }}</div>
+    </td>
+    
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="bug.issue_status"><br>
+        <span style="color:red">{{ errors.issue_status }}</span>
+      </div>
+      <div v-else>{{ bug.issue_status }}</div>
+    </td>    
+    
+
+    
+    <td>
+      <button v-if="editMode" @click="updateBug">Save</button>
+      <button v-else @click="editMode = true">Edit</button>
+      <button v-if="!editMode" @click="deleteBug" style="color:red">Delete</button>
+    </td>
+  </tr>
+</script>
+
+<h1>Bug List</h1>
+
+<div id="buglist">
+  <table>
+    <thead>
+      <tr>
+        <th>Issue Type</th>
+        <th>Issue Date</th>
+        <th>Priority Level</th>
+        
+        <th>Issue Name</th>
+        <th>Issue Description</th>
+        <th>Priority Comments</th>
+        
+        <th>Assigned To</th>
+        <th>Assigned Email</th>
+        <th>Issue Status</th>        
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        is="bug-row"
+        v-for="bug in buglist"
+        :bug="bug">
+      </tr>
+      <tr>        
+		    <td>
+		        <input type="text" v-model="bug.issue_type"><br>
+		        <span style="color:red">{{ errors.issue_type }}</span>
+		    </td>
+		
+		    <td>
+		        <input type="text" v-model="bug.issue_date"><br>
+		        <span style="color:red">{{ errors.issue_date }}</span>
+		    </td>    
+		
+		    <td>
+		        <input type="text" v-model="bug.priority_level"><br>
+		        <span style="color:red">{{ errors.priority_level }}</span>
+		    </td>
+		
+		    <td>
+		        <input type="text" v-model="bug.issue_name"><br>
+		        <span style="color:red">{{ errors.issue_name }}</span>
+		    </td>    
+		    
+		    <td>
+		        <input type="text" v-model="bug.issue_desc"><br>
+		        <span style="color:red">{{ errors.issue_desc }}</span>
+		    </td>
+		
+		    <td>
+		        <input type="text" v-model="bug.comments"><br>
+		    </td>    
+		    
+		    <td>
+		        <input type="text" v-model="bug.assigned_to_name"><br>
+		    </td>
+		    
+		    
+		    <td>
+		        <input type="text" v-model="bug.assigned_to_email"><br>
+		        <span style="color:red">{{ errors.assigned_to_email }}</span>
+		    </td>
+		    
+		    <td>
+		        <input type="text" v-model="bug.issue_status"><br>
+		        <span style="color:red">{{ errors.issue_status }}</span>
+		    </td>    
+        <td><button @click="addBug">Add</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
